@@ -65,6 +65,13 @@ export class SwapInterface extends React.Component<IProps, IState>{
         return Math.round(amountOut * tokenDecimals[tokenOut]) / tokenDecimals[tokenOut]
     }
 
+    calculateLiquidity() {
+        return Math.floor(
+            100* (this.state.data.get("global_"+[tokenIds[0]]+"_balance") * 1 / tokenDecimals[0] +
+            this.state.data.get("global_"+[tokenIds[1]]+"_balance") * this.calculateCurrentPrice(1, 0) / tokenDecimals[1])) / 100;
+
+    }
+
     getTokenIn() {
         return this.state.tokenOut === 0 ? 1 : 0
     }
@@ -91,10 +98,13 @@ export class SwapInterface extends React.Component<IProps, IState>{
                 {/*<button onClick={() => this.swap()}>Exchange</button>*/}
                 <ModalWindow txData={
                     {
-                        pmt: {assetId: tokenIds[this.getTokenIn()], tokens: this.state.amountIn},
+                        pmt: {assetId: tokenIds[this.getTokenIn()], amount: this.state.amountIn * tokenDecimals[this.getTokenIn()]},
                         tokenOut: tokenIds[this.state.tokenOut]
                     }
                 }/>
+            </div>
+            <div className="pool-data">
+                Pool liquidity: ${this.calculateLiquidity()}
             </div>
         </div>
     }

@@ -62,6 +62,7 @@ span.logo {
 
 .swap-window {
   width: 500px;
+  position: relative;
   max-width: 90%;
   margin: 150px auto 100px;
   padding: 40px 20px;
@@ -109,4 +110,10 @@ button {
 .notificationWindow {
   top: 50px;
 
+}
+
+.swap-window .pool-data {
+  position: absolute;
+  margin: 50px -20px;
+  width: 100%;
 }

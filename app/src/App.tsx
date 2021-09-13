@@ -24,7 +24,6 @@ export const contractAddress = "3PL3TvgimsLFWs3xW4kpVmvRf3c8HX7JMS7"
 
 declare global {
     interface Window {
-        // add you custom properties and methods
         WavesKeeper: any
     }
 }
